@@ -4,10 +4,8 @@ import axios from 'axios'
 const USER_ID = import.meta.env.VITE_R34_USER_ID ?? ''
 const API_KEY  = import.meta.env.VITE_R34_API_KEY  ?? ''
 
-// Always route through the /api Vite proxy (no env fallback ambiguity)
-// No custom Accept header — it triggers CORS preflight which rule34 doesn't handle
 const client = axios.create({
-  baseURL: '/api',
+  baseURL: import.meta.env.DEV ? '/api' : 'https://api.rule34.xxx',
   timeout: 15000
 })
 
