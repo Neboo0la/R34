@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" class="dark">
   <head>
+    <script>
+      // Handle redirect from 404.html for SPA routing on GitHub Pages
+      (function() {
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+        var search = location.search;
+        if (search) {
+          var p = new URLSearchParams(search);
+          var path = p.get('p');
+          if (path) {
+            var query = p.get('q');
+            var url = location.pathname + path + (query ? '?' + query.replace(/~and~/g, '&') : '') + location.hash;
+            history.replaceState(null, null, url);
+          }
+        }
+      })();
+    </script>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
@@ -11,7 +31,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/R34/assets/index-B-ueNgpa.js"></script>
+    <script type="module" crossorigin src="/R34/assets/index--pUI7lv8.js"></script>
     <link rel="stylesheet" crossorigin href="/R34/assets/index-Cy5QlhCT.css">
   </head>
   <body>
