@@ -21,20 +21,20 @@
             'bg-bg-secondary border-0 lg:border lg:border-border shadow-2xl',
             'animate-scale-in'
           ]"
-          @touchstart.passive="onTouchStart"
-          @touchmove.passive="onTouchMove"
-          @touchend.passive="onTouchEnd"
         >
           <!-- Media area -->
           <div
             ref="mediaAreaRef"
             class="flex-1 min-h-0 relative bg-black flex items-center justify-center overflow-hidden group"
-            :style="{ ...mediaAreaStyle, cursor: dragCursor }"
+            :style="{ ...mediaAreaStyle, cursor: dragCursor, touchAction: 'none' }"
             @wheel.prevent="onWheel"
             @mousedown="onMouseDown"
             @mousemove="onMouseMove"
             @mouseup="onMouseUp"
             @mouseleave="onMouseUp"
+            @touchstart="onTouchStart"
+            @touchmove.prevent="onTouchMove"
+            @touchend="onTouchEnd"
           >
             <!-- Close button (mobile top-right) -->
             <button

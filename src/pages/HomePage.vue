@@ -1,7 +1,8 @@
 <template>
   <div class="min-h-screen pb-20 md:pb-0">
     <!-- Header -->
-    <div class="sticky top-0 z-30 bg-bg-primary/95 backdrop-blur-xl border-b border-border">
+    <div class="sticky top-0 z-30 bg-bg-primary/95 backdrop-blur-xl border-b border-border transition-transform duration-300"
+      :class="navVisible.value ? 'translate-y-0' : '-translate-y-full'">
       <div class="flex items-center gap-3 px-4 py-3">
         <div class="flex-1">
           <h1 class="text-lg font-bold text-white">Home</h1>
@@ -76,7 +77,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue'
+import { ref, computed, onMounted, inject } from 'vue'
 import { useRouter } from 'vue-router'
 import { usePostsStore } from '@/stores/posts'
 import { useInfiniteScroll } from '@/composables/useInfiniteScroll'
@@ -85,6 +86,7 @@ import SkeletonCard from '@/components/SkeletonCard.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import SearchBar from '@/components/SearchBar.vue'
 
+const navVisible = inject('navVisible', { value: true })
 const postsStore = usePostsStore()
 const router = useRouter()
 

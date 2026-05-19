@@ -2,7 +2,8 @@
   <div class="min-h-screen pb-20 md:pb-0">
 
     <!-- ── Sticky header ─────────────────────────────────────────── -->
-    <div class="sticky top-0 z-30 bg-bg-primary/95 backdrop-blur-xl border-b border-border">
+    <div class="sticky top-0 z-30 bg-bg-primary/95 backdrop-blur-xl border-b border-border transition-transform duration-300"
+      :class="navVisible.value ? 'translate-y-0' : '-translate-y-full'">
       <div class="px-4 pt-4 pb-3">
         <h1 class="text-lg font-bold text-white mb-3">Search</h1>
         <div class="flex gap-2">
@@ -274,7 +275,7 @@
 </template>
 
 <script setup>
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, inject } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { usePostsStore } from '@/stores/posts'
 import { useSearchStore } from '@/stores/search'
@@ -286,6 +287,7 @@ import SkeletonCard from '@/components/SkeletonCard.vue'
 import EmptyState from '@/components/EmptyState.vue'
 import SearchBar from '@/components/SearchBar.vue'
 
+const navVisible = inject('navVisible', { value: true })
 const postsStore = usePostsStore()
 const searchStore = useSearchStore()
 const settingsStore = useSettingsStore()
